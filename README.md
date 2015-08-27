@@ -13,3 +13,6 @@ Web Midi sampler.
 * Display note name, source and filename in LCD when editing key
 * Adjust volume after velocity
 * Edit volume (slider with percentage that velocity is multiplicated by)
+
+##Acknowledgements
+All preloaded samples from [Universal-Soundbank](http://eng.universal-soundbank.com/index.htm)

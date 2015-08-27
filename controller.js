@@ -1,4 +1,28 @@
 function init() {
+    var defaultSamples = [
+        "http://s1download-universal-soundbank.com/mp3/sounds/4510.mp3",
+        "http://s1download-universal-soundbank.com/mp3/sounds/4511.mp3",
+        "http://s1download-universal-soundbank.com/mp3/sounds/4514.mp3",
+        "http://s1download-universal-soundbank.com/mp3/sounds/8693.mp3",
+        "http://s1download-universal-soundbank.com/mp3/sounds/8716.mp3",
+        "http://s1download-universal-soundbank.com/mp3/sounds/8717.mp3",
+        "http://s1download-universal-soundbank.com/mp3/sounds/8718.mp3",
+        "http://s1download-universal-soundbank.com/mp3/sounds/8719.mp3",
+        "http://s1download-universal-soundbank.com/mp3/sounds/8721.mp3",
+        "http://s1download-universal-soundbank.com/mp3/sounds/8751.mp3",
+        "http://s1download-universal-soundbank.com/mp3/sounds/8753.mp3",
+        "http://s1download-universal-soundbank.com/mp3/sounds/8754.mp3",
+        "http://s1download-universal-soundbank.com/mp3/sounds/8755.mp3",
+        "http://s1download-universal-soundbank.com/mp3/sounds/8759.mp3",
+        "http://s1download-universal-soundbank.com/mp3/sounds/8760.mp3",
+        "http://s1download-universal-soundbank.com/mp3/sounds/8761.mp3",
+        "http://s1download-universal-soundbank.com/mp3/sounds/8762.mp3",
+        "http://s1download-universal-soundbank.com/mp3/sounds/4767.mp3",
+        "http://s1download-universal-soundbank.com/mp3/sounds/4769.mp3",
+        "http://s1download-universal-soundbank.com/mp3/sounds/4770.mp3",
+        "http://s1download-universal-soundbank.com/mp3/sounds/4773.mp3"
+
+    ];
     //Create an array with all the key indexes
     var keys = [];
     for (var i = 21; i <= 108; i++) {
@@ -10,7 +34,7 @@ function init() {
     for ( ; buttonNumber < 16; buttonNumber++) {
         beatpad.innerHTML += "<div id='" + buttonNumber + "' class='drumpad' onMouseDown=\"playKey(" + buttonNumber + ")\" onMouseUp=\"setDrumpadInactive(" + buttonNumber +")\">";
         beatpad.innerHTML += "</div>";
-        sampleLibrary.setSample(buttonNumber, null);
+        sampleLibrary.setWebSample(buttonNumber, defaultSamples[buttonNumber % defaultSamples.length], true);
     }
 
     var knobs = document.getElementById("knobs");
@@ -18,7 +42,7 @@ function init() {
         knobs.innerHTML += "<div class='twist' id='" + buttonNumber + "' onMouseDown='playKey(" + buttonNumber + ")' onMouseUp='setDrumpadInactive(" + buttonNumber + ")'>" +
             "<div class='circlebase type1'></div>" +
             "</div>";
-        sampleLibrary.setSample(buttonNumber, null);
+        sampleLibrary.setWebSample(buttonNumber, defaultSamples[buttonNumber % defaultSamples.length], true);
     }
 
     buttonNumber = 48;
@@ -27,12 +51,13 @@ function init() {
         var htmlString = "<li>";
         htmlString += "<div class=white id ='" + buttonNumber +"' onMouseDown='playKey(" + buttonNumber + ")' onMouseUp='setDrumpadInactive(" + buttonNumber + ")'></div>";
         if (!(keyCount % 7 == 2 || keyCount % 7 == 6)) {
+            sampleLibrary.setWebSample(buttonNumber, defaultSamples[buttonNumber % defaultSamples.length], true);
             buttonNumber++;
             htmlString += "<div class=black id ='" + buttonNumber +"' onMouseDown='playKey(" + buttonNumber + ")' onMouseUp='setDrumpadInactive(" + buttonNumber + ")'></div>";
         }
         htmlString += "</li>";
         pianoContainer.innerHTML += htmlString;
-        sampleLibrary.setSample(buttonNumber, null);
+        sampleLibrary.setWebSample(buttonNumber, defaultSamples[buttonNumber % defaultSamples.length], true);
     }
     jQuery("input#fileChooser").change(function () {
         chooseLocal(sampleLibrary.chosenKey);
@@ -129,8 +154,7 @@ function spotifyChooser(){
 
 // (50, 'https://p.scdn.co/mp3-preview/254eae7ce1d3ee59c411bb97f47b5a8fb9a893b3')
 function chooseSpotifyPreviewURL(keyNum, url){
-  var preview = new Audio(url);
-  sampleLibrary.setSpotifySample(keyNum, preview);
+  sampleLibrary.setWebSample(keyNum, preview);
 }
 
 function setStartAndStop(key, start, stop){

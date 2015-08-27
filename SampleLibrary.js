@@ -13,9 +13,9 @@ SampleLibrary.prototype.setSample = function(key, value) {
     this.metadata[key] = value;
 }
 
-SampleLibrary.prototype.setSpotifySample = function(key, value) {
+SampleLibrary.prototype.setWebSample = function(key, value) {    
     if (value)
-        this.samples[key] = value;
+        this.samples[key] = new Audio(value);
 
     this.metadata[key] = value;
 }

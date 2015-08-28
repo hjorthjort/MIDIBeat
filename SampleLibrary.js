@@ -13,11 +13,13 @@ SampleLibrary.prototype.setSample = function(key, value) {
     this.metadata[key] = value;
 }
 
-SampleLibrary.prototype.setWebSample = function(key, value) {    
-    if (value)
-        this.samples[key] = new Audio(value);
-
-    this.metadata[key] = value;
+SampleLibrary.prototype.setWebSample = function(key, value) {
+    var newName = 'Web: ' + value.replace(/^.*(\/.*\/)/g, '');
+    var valueObject = {
+        link: value,
+        name: newName,
+    };
+    this.setSample(key, valueObject);
 }
 
 

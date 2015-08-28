@@ -135,25 +135,25 @@ function setDrumpadInactive(id) {
     clearLcd();
 }
 
-function spotifyChooser(){
+function webChooser(){
 
-  var url = $('#spotify-url').val();
-  var start = $('#spotify-url-start').val();
-  var stop = $('#spotify-url-stop').val();
+  var url = $('#web-url').val();
+  var start = $('#web-url-start').val();
+  var stop = $('#web-url-stop').val();
   var keyNum = sampleLibrary.chosenKey;
 
-      if ($('#spotify-url').val()==="") {
+      if ($('#web-url').val()==="") {
         console.log("no url");
       }
       else {
-        chooseSpotifyPreviewURL(keyNum, url);
+        chooseWebURL(keyNum, url);
         setStartAndStop(keyNum, start, stop);
 
       }
 }
 
 // (50, 'https://p.scdn.co/mp3-preview/254eae7ce1d3ee59c411bb97f47b5a8fb9a893b3')
-function chooseSpotifyPreviewURL(keyNum, url){
+function chooseWebURL(keyNum, url){
   sampleLibrary.setWebSample(keyNum, preview);
 }
 

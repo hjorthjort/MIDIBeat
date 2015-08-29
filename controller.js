@@ -106,8 +106,9 @@ function clearLocal(buttonNumber) {
     document.getElementById("fileChooser").value = "";
 }
 
-function playKey(key) {
-    sampleLibrary.play(key);
+function playKey(key, velocity) {
+    velocity = typeof velocity !== 'undefined' ? velocity : 255;
+    sampleLibrary.play(key, velocity);
     // setDrumpadInactive(oldKey);  
     setDrumpadActive(key);
     setCurrent(key);
@@ -154,7 +155,7 @@ function webChooser(){
 
 // (50, 'https://p.scdn.co/mp3-preview/254eae7ce1d3ee59c411bb97f47b5a8fb9a893b3')
 function chooseWebURL(keyNum, url){
-  sampleLibrary.setWebSample(keyNum, preview);
+  sampleLibrary.setWebSample(keyNum, url);
 }
 
 function setStartAndStop(key, start, stop){

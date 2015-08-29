@@ -23,8 +23,9 @@ SampleLibrary.prototype.setWebSample = function(key, value) {
 }
 
 
-SampleLibrary.prototype.play = function (key) {
+SampleLibrary.prototype.play = function (key, velocity) {
     var audio = this.samples[key];
+    audio.volume = velocity/255;
     this.chosenKey = key;
 
     if(audio.hasOwnProperty('start')){
